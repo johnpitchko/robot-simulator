@@ -18,4 +18,17 @@ class Robot
 
     @bearing = bearing
   end
+
+  def turn_right
+    @bearing = case bearing
+    when :north
+      :east
+    when :east
+      :south
+    when :south
+      :west
+    when :west
+      :north
+    end
+  end
 end
