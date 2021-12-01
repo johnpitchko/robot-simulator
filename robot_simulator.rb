@@ -14,10 +14,8 @@ require 'byebug'
 class Simulator
   INSTRUCTIONS = {'L' => :turn_left, 'R' => :turn_right, 'A' => :advance}.freeze
 
-  def initialize
-  end
-
-  def instructions(instruction)
-    [INSTRUCTIONS[instruction]]
+  # Translate an instruction string into the instruction symbols that the robot understands
+  def instructions(instruction_string)
+    instruction_string.split(//).map { |c| INSTRUCTIONS[c] }
   end
 end
