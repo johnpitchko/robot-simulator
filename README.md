@@ -1,3 +1,11 @@
+# Robot Simulator
+
+This is my solution for the **Robot Simulator** challenge from [CodeSubmit](https://codesubmit.io/). The challenge was part of the interview process for a Senior Developer role at [Thinking Capital](https://www.thinkingcapital.ca).
+
+Use this code as inspiration (as there are many potential solutions), but *please do not plagiarise!*
+
+Copyright John Pitchko 2021
+
 ### Brief
 
 Write a robot simulator.
