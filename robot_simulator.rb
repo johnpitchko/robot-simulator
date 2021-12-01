@@ -9,6 +9,15 @@ To get started with TDD, see the `README.md` file in your
 # frozen_string_literal: true
 
 # Robot simulator
-class RobotSimulator
+require 'byebug'
 
+class Simulator
+  INSTRUCTIONS = {'L' => :turn_left, 'R' => :turn_right, 'A' => :advance}.freeze
+
+  def initialize
+  end
+
+  def instructions(instruction)
+    [INSTRUCTIONS[instruction]]
+  end
 end
