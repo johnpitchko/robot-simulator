@@ -15,7 +15,7 @@ class Simulator
     instruction_string.split(//).map { |c| INSTRUCTIONS[c] }
   end
 
-  # Initialize a robot at a specific position and direction
+  # Position a robot at a specific position and direction
   def place(robot, x:, y:, direction:)
     robot.at(x, y)
     robot.orient(direction)
@@ -29,7 +29,7 @@ end
 
 # Robot that follows 3 instructions: turn left, turn_right, advance
 class Robot
-  VALID_ORIENTATION = %i[east west north south].freeze
+  VALID_ORIENTATIONS = %i[east west north south].freeze
   BEARINGS = { north: :east, east: :south, south: :west, west: :north }.freeze
   COORDS_ADVANCE = { north: [0, 1], east: [1, 0], south: [0, -1], west: [-1, 0] }.freeze
 
@@ -43,7 +43,7 @@ class Robot
 
   # Reorients the robot to a specific direction
   def orient(bearing)
-    raise ArgumentError unless VALID_ORIENTATION.include? bearing
+    raise ArgumentError unless VALID_ORIENTATIONS.include? bearing
 
     @bearing = bearing
   end
@@ -68,8 +68,7 @@ class Robot
 
   # Move the robot forward based on orientation
   def advance
-    new_coords = COORDS_ADVANCE[@bearing]
     # Some funky matrix addition...
-    @coordinates = [@coordinates, new_coords].transpose.map(&:sum)
+    @coordinates = [@coordinates, COORDS_ADVANCE[@bearing]].transpose.map(&:sum)
   end
 end
