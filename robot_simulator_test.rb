@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'minitest/pride'
 require_relative 'robot_simulator'
 
 class RobotTurningTest < Minitest::Test
