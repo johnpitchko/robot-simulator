@@ -1,6 +1,21 @@
 # frozen_string_literal: true
 #
 # Robot that follows 3 instructions: turn left, turn_right, advance
-class Robot
 
+require 'byebug'
+
+class Robot
+  VALID_ORIENTATION = %i[east west north south].freeze
+
+  attr_reader :bearing
+
+  def initialize(bearing = :north)
+    @bearing = bearing
+  end
+
+  def orient(bearing)
+    raise ArgumentError unless VALID_ORIENTATION.include? bearing
+
+    @bearing = bearing
+  end
 end
