@@ -7,11 +7,12 @@ require 'byebug'
 class Robot
   VALID_ORIENTATION = %i[east west north south].freeze
 
-  attr_reader :bearing
+  attr_reader :bearing, :coordinates
 
   # initialize the robot
-  def initialize(bearing = :north)
+  def initialize(bearing = :north, coordinates = [0, 0])
     @bearing = bearing
+    @coordinates = [0, 0]
   end
 
   # Reorients the robot to a specific direction
@@ -36,9 +37,15 @@ class Robot
   end
 
   # Turn the robot left from current bearing
+  # Turning the robot right 3x is the same as turning left (also saves repeating my typing)
   def turn_left
     3.times do
       @bearing = turn_right
     end
+  end
+
+  # Place the robot at specific coordinates
+  def at(x_pos = 0, y_pos = 0)
+   @coordinates = [x_pos, y_pos] 
   end
 end
