@@ -6,8 +6,6 @@
 
 # frozen_string_literal: true
 
-require 'byebug'
-
 # Robot simulator
 class Simulator
   INSTRUCTIONS = { 'L' => :turn_left, 'R' => :turn_right, 'A' => :advance }.freeze
