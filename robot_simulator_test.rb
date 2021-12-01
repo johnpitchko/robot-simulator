@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative 'robot_simulator'
-require_relative 'robot'
 
 class RobotTurningTest < Minitest::Test
   attr_reader :robot

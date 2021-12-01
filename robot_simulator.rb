@@ -6,10 +6,9 @@
 
 # frozen_string_literal: true
 
-# Robot simulator
 require 'byebug'
-require_relative 'robot'
 
+# Robot simulator
 class Simulator
   INSTRUCTIONS = { 'L' => :turn_left, 'R' => :turn_right, 'A' => :advance }.freeze
 
@@ -33,6 +32,8 @@ end
 # Robot that follows 3 instructions: turn left, turn_right, advance
 class Robot
   VALID_ORIENTATION = %i[east west north south].freeze
+  BEARINGS = { north: :east, east: :south, south: :west, west: :north }.freeze
+  COORDS_ADVANCE = { north: [0, 1], east: [1, 0], south: [0, -1], west: [-1, 0] }.freeze
 
   attr_reader :bearing, :coordinates
 
@@ -51,16 +52,7 @@ class Robot
 
   # Turn the robot right from current bearing
   def turn_right
-    @bearing = case bearing
-               when :north
-                 :east
-               when :east
-                 :south
-               when :south
-                 :west
-               when :west
-                 :north
-               end
+    @bearing = BEARINGS[@bearing]
   end
 
   # Turn the robot left from current bearing
@@ -78,17 +70,7 @@ class Robot
 
   # Move the robot forward based on orientation
   def advance
-    new_coords = case @bearing
-                 when :north
-                   [0, 1]
-                 when :east
-                   [1, 0]
-                 when :south
-                   [0, -1]
-                 when :west
-                   [-1, 0]
-                 end
-
+    new_coords = COORDS_ADVANCE[@bearing]
     # Some funky matrix addition...
     @coordinates = [@coordinates, new_coords].transpose.map(&:sum)
   end
