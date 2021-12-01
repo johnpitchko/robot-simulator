@@ -10,6 +10,7 @@ To get started with TDD, see the `README.md` file in your
 
 # Robot simulator
 require 'byebug'
+require_relative 'robot'
 
 class Simulator
   INSTRUCTIONS = {'L' => :turn_left, 'R' => :turn_right, 'A' => :advance}.freeze
@@ -18,4 +19,15 @@ class Simulator
   def instructions(instruction_string)
     instruction_string.split(//).map { |c| INSTRUCTIONS[c] }
   end
+
+  # Initialize a robot at a specific position and direction
+  def place(robot, x:, y:, direction:)
+    robot.at(x, y)
+    robot.orient(direction)
+  end
+
+  # Send an entire string of commands to a robot
+   def evaluate(robot, instruction_string)
+     instructions(instruction_string).each{ |ins| robot.send(ins) }
+   end
 end
